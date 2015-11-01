@@ -1,6 +1,6 @@
 # WebDev-Group-Project
 
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg)]
+[License](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 ##Group Project
 
