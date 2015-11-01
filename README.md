@@ -1,2 +1,6 @@
 # WebDev-Group-Project
-Grp John, Patrick
+##Group Project
+
+- John O'Grady | 14101718
+- Patrick King
+- Nick
