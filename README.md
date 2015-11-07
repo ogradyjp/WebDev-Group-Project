@@ -2,7 +2,7 @@
 
 [![Gitter chat](https://img.shields.io/badge/gitter-join--chat-blue.svg)](https://gitter.im/kinpat7/WebDev-Group-Project)
 
-[Uses HTML](http://forthebadge.com/images/badges/uses-html.svg)
+[!Uses HTML](http://forthebadge.com/images/badges/uses-html.svg)
 
 ##Group Project
 
