@@ -2,9 +2,7 @@
 
 [![Gitter chat](https://img.shields.io/badge/gitter-join--chat-blue.svg)](https://gitter.im/kinpat7/WebDev-Group-Project)
 
-[![](http://forthebadge.com/images/badges/uses-html.svg)]
-
-![License](https://img.shields.io/github/license/mashape/apistatus.svg)
+[Uses HTML](http://forthebadge.com/images/badges/uses-html.svg)
 
 ##Group Project
 
