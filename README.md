@@ -10,3 +10,16 @@
 - John O'Grady | 14101718
 - Patrick King
 - Nick
+
+###Web Application for encrypting and decrypting text with classical ciphers.
+
+Examples of classical ciphers available:
+
+#### Substituion Ciphers
+- Caeser Cipher
+
+#### Monoalphabetic Substitution Cipher:
+- Affine Cipher
+
+#### Polyalphabetic Substition Cipher:
+- Vigenère Cipher
