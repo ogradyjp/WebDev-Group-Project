@@ -1,6 +1,7 @@
 # WebDev-Group-Project
 
 ![Uses HTML](http://forthebadge.com/images/badges/uses-html.svg)
+![Uses JS](http://forthebadge.com/images/badges/uses-js.svg)
 
 ##Group Project
 
