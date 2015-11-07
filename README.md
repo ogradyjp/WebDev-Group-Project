@@ -12,6 +12,8 @@
 - Patrick King
 - Nick
 
+To keep upto date on processes and guidelines, checkout Trello https://trello.com/b/xcKlETQR/web-application-development-project
+
 ###Web Application for encrypting and decrypting text with classical ciphers.
 
 Examples of classical ciphers available:
