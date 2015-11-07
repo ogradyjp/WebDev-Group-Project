@@ -1,7 +1,7 @@
 # WebDev-Group-Project
 
-[![Gitter chat](https://img.shields.io/badge/gitter-join--chat-blue.svg)](https://gitter.im/kinpat7/WebDev-Group-Project)
-![License](https://img.shields.io/github/license/mashape/apistatus.svg)
+![Uses HTML](http://forthebadge.com/images/badges/uses-html.svg)
+![Uses JS](http://forthebadge.com/images/badges/uses-js.svg)
 
 ##Group Project
 
@@ -10,3 +10,16 @@
 - John O'Grady | 14101718
 - Patrick King
 - Nick
+
+###Web Application for encrypting and decrypting text with classical ciphers.
+
+Examples of classical ciphers available:
+
+#### Substituion Ciphers
+- Caeser Cipher
+
+#### Monoalphabetic Substitution Cipher:
+- Affine Cipher
+
+#### Polyalphabetic Substition Cipher:
+- Vigenère Cipher
