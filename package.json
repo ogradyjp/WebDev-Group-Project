@@ -25,6 +25,10 @@
   },
   "homepage": "https://github.com/kinpat7/WebDev-Group-Project#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "feed": "^0.2.6",
+    "orm": "^2.1.27",
+    "pg": "^4.4.3"
   }
 }
