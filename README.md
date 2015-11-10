@@ -12,17 +12,19 @@
 - Patrick King
 - Nick
 
-To keep upto date on processes and guidelines, checkout Trello https://trello.com/b/xcKlETQR/web-application-development-project
+To keep up to date on processes and guidelines, checkout Trello [Trello Board](https://trello.com/b/xcKlETQR/web-application-development-project)
+
+[Deployed Application](https://cipher-com.herokuapp.com)
 
 ###Web Application for encrypting and decrypting text with classical ciphers.
 
 Examples of classical ciphers available:
 
-#### Substituion Ciphers
-- Caeser Cipher
+#### Substitution Ciphers
+- Caesar Cipher
 
-#### Monoalphabetic Substitution Cipher:
+#### Mono alphabetic Substitution Cipher:
 - Affine Cipher
 
-#### Polyalphabetic Substition Cipher:
+#### Polyalphabetic Substitution Cipher:
 - Vigenère Cipher
