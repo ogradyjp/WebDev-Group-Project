@@ -63,21 +63,21 @@
                             </div>
                         </div>
                         <div class="control-panel">
-                            <form class="marg-50-left">
+                            <form class="marg-50-left" id="encrypt-form">
                                 <div class="form-group">
                                     <label for="input-text">Text to Encrypt</label>
-                                    <input type="text" class="form-control" name="input-text" id="input-text" placeholder="Text to encrypt">
+                                    <input type="text" class="form-control" name="inputtext" id="input-text" placeholder="Text to encrypt" autocomplete="off" />
                                 </div>
                                 <div class="form-group">
                                     <label for="input-select">Cipher</label>
-                                    <select class="form-control" name="cipher-input" id="input-select">
+                                    <select class="form-control" name="cipherinput" id="input-select">
                                         <option value="cae">Caesar</option>
                                         <option value="vig">Vigenere</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Encrypt</button>
                             </form>
-                            <form class="marg-50-left output-panel">
+                            <form class="marg-50-left output-panel" id="output-panel">
                                 <div class="form-group">
 
                                 </div>
