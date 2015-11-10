@@ -5,6 +5,61 @@
  *
  */
 
-.nav-bar {
-    background-color: #6F5499;
+body {
+     background-color: #F1F1F1;
 }
+
+h1, h2, h3, h4, h5, p {
+     font-family: 'Open Sans', 'Arial', sans-serif;
+}
+label {
+     font-family : 'Open Sans', 'Helvetica', sans-serif;
+}
+input {
+    font-family : 'Roboto', 'Helvetica', sans-serif;
+}
+.navbar {
+    border-radius: 0;
+}
+.navbar .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:hover {
+    color : #8BC542;
+}
+.navbar a:hover, .navbar-inverse a:hover,
+.navbar a:focus, .navbar-inverse a:focus {
+    outline : 0;
+}
+.logo-a {
+    padding-top: 2px;
+}
+
+.row {
+    margin-left : 0;
+    margin-right : 0;
+    background-color : #F1F1F1;
+}
+.panel-main {
+    min-height: 45em;
+}
+.jumbotron {
+    padding : 3em;
+    border-radius: 6px;
+}
+
+.jumbotron h1 {
+    color: #8BC542;
+}
+
+/**
+ *  custom bootstrap classes
+ *
+ */
+
+ .marg-50-left {
+     width : 49%;
+     margin-left : .4%;
+     margin-right: .4%;
+     float : left;
+ }
+ .marg-50-left.output-panel {
+
+ }

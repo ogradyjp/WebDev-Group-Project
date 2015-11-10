@@ -1,11 +1,17 @@
 /**
  *  index.js
  *  @author John O'Grady
- *  @note index javascript file, for routing request to correct file
+ *  @date 10/11/2015
+ *  @note index javascript file, handle routing and server requets
  */
 
  var express = require('express');
  var app = express();
+
+/**
+ *  for calling js, and css files, etc...
+ */
+ app.use(express.static(__dirname + '/public'));
 
 /** routes... **/
  app.get('/', function(request, response) {
@@ -13,7 +19,7 @@
  });
 
 /** start an instance of the app/server **/
- var server = app.listen((process.env.PORT || 8080), function () {
+ var server = app.listen((process.env.PORT || 80), function () {
      var hostname = server.address().address;
      var port = server.address().port;
      console.log('App listening at http://%s%s', hostname, port);
