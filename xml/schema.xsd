@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://cipher-com.herokuapp.com/ns/tns" elementFormDefault="qualified">
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://cipher-com.herokuapp.com/ns/tns" xmlns:cc="http://cipher-com.herokuapp.com/ns/tns" elementFormDefault="qualified">
 	<!-- Schema Documentation -->
 	<xs:annotation>
 		<xs:documentation>
 			This XML Schema will be used to validate all encryption requests. It enforces data structures that all requests must follow.
 		</xs:documentation>
 	</xs:annotation>
-
 </xs:schema>
