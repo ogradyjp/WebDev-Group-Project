@@ -147,7 +147,7 @@ app.post('/requests', function(request, response) {
         ip: String
     });
     var ip = (request.headers['x-forwarded-for'] || request.connection.remoteAddress);
-    entry.find({ip: xmlCleaner.cleanRemoteAddress(ip)}, 5, ["id", "a"], function(error, results) {
+    entry.find({ip: xmlCleaner.cleanRemoteAddress(ip)}, 5, ["id", "Z"], function(error, results) {
         if (!error) {
             var requests = {requests:[]};
             for(var key in results) {
