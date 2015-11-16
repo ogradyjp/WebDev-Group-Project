@@ -8,7 +8,7 @@
  */
 
 /** GloBal variables **/
-var xmlStylesheet = 'https://cipher-com.herokapp.com/style.xsl';
+var xmlStylesheet = 'https://cipher-com.herokuapp.com/style.xsl';
 
 /** $(document).onready **/
 $(function(){
