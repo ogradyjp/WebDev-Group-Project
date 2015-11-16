@@ -2,13 +2,11 @@
  *  main.js
  *  @author John O'Grady
  *  @date 10/11/2015
- *  @note controls ajax calls
+ *  @note controls ajax calls,
+ *      uses google AJAXSLT to transform
+ *      ajax xml responses with xslt
  */
-
-function caesar() {
-
-}
-
+/** $(document).onready **/
 $(function(){
     /**
      *  @note prevent default on forms on submit event to stop page refreshing on submit.
@@ -18,12 +16,56 @@ $(function(){
             event.preventDefault();
         });
     });
-
+    /**
+     *  @note send request to encrypt text
+     *      perform XSL transformation & append
+     *      transformed html
+     */
     $('#encrypt-form').submit(function() {
-        console.log('submitted');
+        /** serialize the form data **/
         var formData = ($(this).serializeArray());
-        $.post('/test', formData, function(data) {
-            $('#output-panel').html("<h2>Your encrypted message is:</h2><p>" + data + "</p>");
-        });
-    });
+        /** post the data to the url **/
+        $.post('/enc', formData, function(data) {
+            /** parse the xml response to be transformed **/
+            var xml = xmlParse(data);
+            /** get request for xml of xsl file **/
+            $.get('http://83.212.82.202:8080/style.xsl', function(response) {
+                /**
+                *   xsl is returned as an XML Object,
+                 *  we need to serialize it, then convert to string
+                 */
+                var xslt = xmlParse(new XMLSerializer().serializeToString(response));
+                /** transform the xml with the xslt **/
+                var returnHTML = xsltProcess(xml, xslt);
+                updatePreviousRequests();
+                $('#response').html(returnHTML);
+            }); // end $.get
+        }); // end $.post
+    }); // end onsubmit
+    /**
+     *  load previous requests
+     *
+     */
+     $('#requests').ready(function(event) {
+         updatePreviousRequests();
+     });
 });
+
+function updatePreviousRequests() {
+    $.post('/requests', '', function(data) {
+        /** parse the xml response to be transformed **/
+        var xml = xmlParse(data);
+        /** get request for xml of xsl file **/
+        $.get('http://83.212.82.202:8080/style.xsl', function(response) {
+            /**
+            *   xsl is returned as an XML Object,
+             *  we need to serialize it, then convert to string
+             */
+            var xslt = (new XMLSerializer().serializeToString(response));
+            xslt = xmlParse(xslt);
+            /** transform the xml with the xslt **/
+            var returnHTML = xsltProcess(xml, xslt);
+            $('#requests').html(returnHTML);
+        }); // end $.get
+    }); // end $.post
+}
