@@ -18,15 +18,18 @@ var json2xml = require('json2xml');
 var Cipher = require('./public/res/js/lib/cipher.js');
 var XMLCleaner = require('./public/res/js/lib/XMLCleaner.js');
 var DateHelper = require('./public/res/js/lib/datehelper.js');
+
 /** GloBal variables **/
 var ormdb;
 var xmlCleaner = new XMLCleaner();
 var dateHelper;
+
 /** for calling js, and css files, etc... **/
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/xml'));
 app.set('views', __dirname + '/public/views');
 app.set('view engine', 'jade');
+
 /** Connect to our postgresql DB **/
 orm.connect('postgres://wmznuqubnhpoqp:ETFxj9YgaezDqQhA-OrIeou-7x@ec2-107-21-219-201.compute-1.amazonaws.com:5432/d3nm324q5l4nb6?ssl=true', function(err, db) {
     if (err) { throw err; }
@@ -116,7 +119,10 @@ app.post('/enc', function(request, response) {
             type: 'caesar'
         }
     });
-    var ip = xmlCleaner.cleanRemoteAddress(request.connection.remoteAddress);
+    /** use request.headers to obtain the users IP information over a secure https request **/
+    var ip = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
+    /** clean anything other than [0-9] and [.] **/
+    ip = xmlCleaner.cleanRemoteAddress(ip);
     dateHelper = new DateHelper(new Date());
     console.log((dateHelper.datetime()).toString());
     entry.create({
@@ -140,7 +146,8 @@ app.post('/requests', function(request, response) {
         requested: Number,
         ip: String
     });
-    entry.find({ip: xmlCleaner.cleanRemoteAddress(request.connection.remoteAddress)}, 5, ["id", "a"], function(error, results) {
+    var ip = (request.headers['x-forwarded-for'] || request.connection.remoteAddress);
+    entry.find({ip: xmlCleaner.cleanRemoteAddress(ip)}, 5, ["id", "a"], function(error, results) {
         if (!error) {
             var requests = {requests:[]};
             for(var key in results) {
