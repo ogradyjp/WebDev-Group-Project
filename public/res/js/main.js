@@ -6,6 +6,10 @@
  *      uses google AJAXSLT to transform
  *      ajax xml responses with xslt
  */
+
+/** GloBal variables **/
+var xmlStylesheet = 'http://cipher-com.herokupp.com/style.xsl';
+
 /** $(document).onready **/
 $(function(){
     /**
@@ -29,7 +33,7 @@ $(function(){
             /** parse the xml response to be transformed **/
             var xml = xmlParse(data);
             /** get request for xml of xsl file **/
-            $.get('http://83.212.82.202:8080/style.xsl', function(response) {
+            $.get(xmlStylesheet, function(response) {
                 /**
                 *   xsl is returned as an XML Object,
                  *  we need to serialize it, then convert to string
@@ -56,7 +60,7 @@ function updatePreviousRequests() {
         /** parse the xml response to be transformed **/
         var xml = xmlParse(data);
         /** get request for xml of xsl file **/
-        $.get('http://83.212.82.202:8080/style.xsl', function(response) {
+        $.get(xmlStylesheet, function(response) {
             /**
             *   xsl is returned as an XML Object,
              *  we need to serialize it, then convert to string
