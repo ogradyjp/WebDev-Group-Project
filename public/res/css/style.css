@@ -49,6 +49,11 @@ input {
     color: #8BC542;
 }
 
+.page-header {
+    margin : 0;
+    padding : 1.3em;
+}
+
 /**
  *  custom bootstrap classes
  *
@@ -64,5 +69,15 @@ input {
 
  }
 .output-panel {
-    padding : 1.5em;
+    padding : 1.2em;
+}
+#output-panel {
+
+}
+
+#responses > h3 {
+}
+
+#requests {
+    padding : 0 1.2em;
 }
