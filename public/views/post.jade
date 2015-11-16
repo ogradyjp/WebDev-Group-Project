@@ -1,0 +1,12 @@
+extends header
+block head
+    title Cipher Com | #{post.title}
+block content
+    .row
+        .col-sm-2
+        .col-sm-8
+            .panel.panel-default.panel-main
+                #main-body.panel-body
+                    h3 #{post.title}
+                    p #{post.description}
+        .col-sm-2
