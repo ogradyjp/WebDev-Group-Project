@@ -11,6 +11,9 @@
 var XMLCleaner = function() {
     this.cleanRSS = function(xml) {
         return xml.replace(/<content:encoded\/>/g, '');
+    };
+    this.cleanRemoteAddress = function(remoteAddress) {
+        return remoteAddress.replace(/[^\d.]+/g, '');
     }
 };
 
