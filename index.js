@@ -2,57 +2,48 @@
  *  index.js
  *  @author John O'Grady
  *  @date 10/11/2015
- *  @note index javascript file... handles routing, server responses/requests, orm, rss generation, ciphering, parsing url
+ *  @note index javascript file... handles routing, server responses/requests,
+  *     orm, rss generation, ciphering, parsing url
  */
-
+var fs = require('fs');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Feed = require('feed');
 var orm = require('orm');
 var json2xml = require('json2xml');
-
 /**
  * custom packages
  */
 var Cipher = require('./public/res/js/lib/cipher.js');
 var XMLCleaner = require('./public/res/js/lib/XMLCleaner.js');
+var DateHelper = require('./public/res/js/lib/datehelper.js');
 /** GloBal variables **/
 var ormdb;
 var xmlCleaner = new XMLCleaner();
-
+var dateHelper;
 /** for calling js, and css files, etc... **/
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/xml'));
-
 app.set('views', __dirname + '/public/views');
 app.set('view engine', 'jade');
-
 /** Connect to our postgresql DB **/
 orm.connect('postgres://wmznuqubnhpoqp:ETFxj9YgaezDqQhA-OrIeou-7x@ec2-107-21-219-201.compute-1.amazonaws.com:5432/d3nm324q5l4nb6?ssl=true', function(err, db) {
     if (err) { throw err; }
     ormdb = db;
 });
-
 /** for parsing query string in url **/
 app.use(bodyParser.urlencoded({extended: false}));
 
 /**
  * routes...
 **/
-
 /** Get Requests **/
-
-/**
- * serve index page
- */
 app.get('/', function(request, response) {
-    console.log(request.connection.remoteAddress);
     response.render('index');
 });
-
 /**
- * serve list of blog posts
+ * serve a list of blog posts
  */
 app.get('/blog', function(request, response) {
     var post = ormdb.define('blog', {
@@ -64,9 +55,8 @@ app.get('/blog', function(request, response) {
         response.render('blog', {posts: posts});
     });
 });
-
 /**
- * server a certain blog with id :id
+ * serve a certain blog with id :id
  */
 app.get('/blog/:id', function(request, response) {
     var post = ormdb.define('blog', {
@@ -83,7 +73,6 @@ app.get('/blog/:id', function(request, response) {
         }
     });
 });
-
 /**
  * server our generated rss feeds. each item in the rss feed is generated from our blog posts in the DB
  */
@@ -111,12 +100,9 @@ app.get('/rss', function(request, response) {
         response.send(xmlCleaner.cleanRSS(feed.render('rss-2.0')));
     });
 });
-
 /** Post Requests **/
 app.post('/enc', function(request, response) {
-    /** instantiate our cipher object **/
     var cipher = new Cipher(request.body.inputtext);
-    /** define our entry entity in relation requests **/
     var entry = ormdb.define('requests', {
         id: Number,
         original: String,
@@ -124,36 +110,52 @@ app.post('/enc', function(request, response) {
         requested: Date,
         ip: String
     });
-    /** generate xml to send to the client **/
     var encryptedText = json2xml({
         cipher: {
             value: cipher.caesar(cipher.string),
             type: 'caesar'
         }
     });
-    /** cleanRemoteAddress function removes all chars except digits and . - to make a valid ip address **/
     var ip = xmlCleaner.cleanRemoteAddress(request.connection.remoteAddress);
-    /** instantiate our DateHelper object for storing dates **/
     dateHelper = new DateHelper(new Date());
-    /** insert the requst into the DB **/
+    console.log((dateHelper.datetime()).toString());
     entry.create({
         original: cipher.string,
         encrypted: cipher.caesar(cipher.string),
         ip: ip,
         requested: dateHelper.datetime()
-        /** check for errors in the insert **/
     }, function(error) {
         if (error) {
             throw error;
         }
     });
-    /** send the encrypted text back to the client **/
     response.send(encryptedText);
 });
 
+app.post('/requests', function(request, response) {
+    var entry = ormdb.define('requests', {
+        id: Number,
+        original: String,
+        encrypted: String,
+        requested: Number,
+        ip: String
+    });
+    entry.find({ip: xmlCleaner.cleanRemoteAddress(request.connection.remoteAddress)}, 5, ["id", "a"], function(error, results) {
+        if (!error) {
+            var requests = {requests:[]};
+            for(var key in results) {
+                console.log(results[key].requested);
+                requests.requests.push({
+                    request: ((results[key]))
+                })
+            }
+        }
+        response.send(json2xml(requests));
+    });
+});
 /** start an instance of the app/server **/
 var server = app.listen((process.env.PORT || 80), function () {
     var hostname = server.address().address;
     var port = server.address().port;
-    console.log('App listening at http://%s%s', hostname, port);
+    console.log('App listening at http://%s:%s', hostname, port);
 });
