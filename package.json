@@ -6,6 +6,9 @@
   "scripts": {
     "start": "npm start"
   },
+  "engines": {
+    "node": "0.10.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kinpat7/WebDev-Group-Project.git"
